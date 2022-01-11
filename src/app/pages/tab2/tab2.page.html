@@ -1,0 +1,32 @@
+<ion-header   class="ion-no-border" >
+  <ion-toolbar color="dark">
+    <ion-title>
+      Encabezados
+    </ion-title>
+  </ion-toolbar>
+
+  <ion-segment scrollable  (ionChange)="segmentChanged($event)" mode="md"  color="primary">
+    <ion-segment-button *ngFor="let categoria of categorias" [ngSwitch]="categoria" mode="md" [value]="categoria" color="dark" >
+      <ion-label *ngSwitchCase="'business'" class="ion-text-capitalize">Trabajo</ion-label>
+      <ion-label *ngSwitchCase="'entertainment'" class="ion-text-capitalize">Entretenimiento</ion-label>
+      <ion-label *ngSwitchCase="'general'" class="ion-text-capitalize">General</ion-label>
+      <ion-label *ngSwitchCase="'health'" class="ion-text-capitalize">Salud</ion-label>
+      <ion-label *ngSwitchCase="'science'" class="ion-text-capitalize">Ciencia</ion-label>
+      <ion-label *ngSwitchCase="'sports'" class="ion-text-capitalize">Deportes</ion-label>
+      <ion-label *ngSwitchCase="'technology'" class="ion-text-capitalize">Tecnología</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+</ion-header>
+
+<ion-content  color="dark">
+
+  <app-noticias [noticias]="noticias"></app-noticias>
+
+  <ion-infinite-scroll threshold="150px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content class="colorLoadingText" class="infinite-loading-text"
+      loadingSpinner="crescent"
+      loadingText="Cargando Nuevas Noticias...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  
+</ion-content>
